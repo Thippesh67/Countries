@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Container, Typography, TextField, Grid, Paper } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
 const CountriesList = () => {
-  const countries = [
+  const countries =  useMemo(() => [
     "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan",
     "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Brazil",
     "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Chile", "China", "Colombia", "Croatia", "Cuba",
@@ -17,7 +17,7 @@ const CountriesList = () => {
     "Spain", "Sri Lanka", "Sudan", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand",
     "Tunisia", "Turkey", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Uzbekistan",
     "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"
-  ];
+  ], []);
 
   const [search, setSearch] = useState("");
   const [filteredCountries, setFilteredCountries] = useState(countries);
