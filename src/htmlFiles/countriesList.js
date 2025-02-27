@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { Container, Typography, TextField, Grid, Paper } from "@mui/material";
+import { Container, Typography, TextField, Grid, Paper, Button } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 
 const CountriesList = () => {
-  const navigate = useNavigate(); // Hook to navigate between pages
+  const navigate = useNavigate();
 
+  // List of countries
   const countries = useMemo(() => [
     "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan",
     "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Brazil",
@@ -33,21 +34,30 @@ const CountriesList = () => {
     );
   }, [search, countries]);
 
-  // Function to navigate to country details
+  const handleLogout = () => {
+    localStorage.removeItem("loggedInUser");
+    navigate("/login");
+  };
+
   const handleCountryClick = (country) => {
     navigate(`/country/${country}`);
   };
 
   return (
     <Container maxWidth="md" sx={{ py: 5, textAlign: "center" }}>
-      <Typography
-        variant="h4"
-        fontWeight="bold"
-        gutterBottom
-        sx={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 1 }}
-      >
+      <Typography variant="h4" fontWeight="bold" gutterBottom>
         🌍 List of Countries
       </Typography>
+
+      {/* Logout Button */}
+      <Button 
+        variant="contained" 
+        color="error" 
+        onClick={handleLogout} 
+        sx={{ mb: 2 }}
+      >
+        Logout
+      </Button>
 
       {/* Search Input */}
       <TextField
