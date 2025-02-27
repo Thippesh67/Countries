@@ -28,7 +28,7 @@ const CountriesList = () => {
         country.toLowerCase().includes(search.toLowerCase())
       )
     );
-  }, [search]);
+  }, [search, countries]);
 
   return (
     <Container maxWidth="md" sx={{ py: 5, textAlign: "center" }}>
