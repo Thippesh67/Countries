@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { Container, Typography, TextField, Grid, Paper } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 const CountriesList = () => {
-  const countries =  useMemo(() => [
+  const navigate = useNavigate(); // Hook to navigate between pages
+
+  const countries = useMemo(() => [
     "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan",
     "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Brazil",
     "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Chile", "China", "Colombia", "Croatia", "Cuba",
@@ -29,6 +32,11 @@ const CountriesList = () => {
       )
     );
   }, [search, countries]);
+
+  // Function to navigate to country details
+  const handleCountryClick = (country) => {
+    navigate(`/country/${country}`);
+  };
 
   return (
     <Container maxWidth="md" sx={{ py: 5, textAlign: "center" }}>
@@ -60,6 +68,7 @@ const CountriesList = () => {
           <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
             <Paper
               elevation={3}
+              onClick={() => handleCountryClick(country)}
               sx={{
                 p: 2,
                 textAlign: "center",
